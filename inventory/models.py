@@ -12,7 +12,7 @@ class Inventory(models.Model):
 
 
     class Meta:
-        verbose_name_plural = 'items'
+        verbose_name_plural = 'Inventory'
 
     def __str__(self):
         return self.name
