@@ -10,15 +10,16 @@
     href="{% static 'css/main.css' %}"
     type="text/css">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"
-  />
 
   {% if title %}
     <title> ims-{{title}} </title>
   {% else %}
     <title>ims-datas</title>
   {% endif %}
-
+  <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
+  <script src="{% static 'fontawesomefree/js/fontawesome.js' %}"></script>
+  <script src="{% static 'fontawesomefree/js/solid.js' %}"></script>
+  <script src="{% static 'fontawesomefree/js/brands.js' %}"></script>
 </head>
 <body>
   {% comment %} navbar {% endcomment %}
@@ -38,6 +39,9 @@
             <a class="nav-link active" aria-current="page" href="{% url 'add_inventory' %}">Add inventory</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'dashboard' %}">Dashboard</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Logout</a>
           </li>
         {% endif %}
@@ -52,6 +56,13 @@
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10 col-sm-12 col-xm-12">
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{message.tags}} mt-4">
+                {{message}}
+              </div>
+            {% endfor %}
+          {% endif %}
           {% block content %}
 
           {% endblock  %}
